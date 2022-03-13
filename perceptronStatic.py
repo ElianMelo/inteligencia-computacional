@@ -12,20 +12,33 @@ def calculoPesos():
     geracao = 1
 
     x = [[]]
+    # w = [
+    #     [0, 0, 0]
+    # ]
+
     w = [
-        [0, 0, 0]
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     ]
 
     # AND 2 entradas e alvos bipolares
 
+    # scene = [
+    #     [1, 1, 1],
+    #     [1, -1, 1],
+    #     [-1, 1, 1],
+    #     [-1, -1, 1],
+    # ]
+
+    # target = [1, -1, -1, -1]    
+
+    # Números
+
     scene = [
-        [1, 1, 1],
-        [1, -1, 1],
-        [-1, 1, 1],
-        [-1, -1, 1],
+        [1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1],
+        [1, -1, 1, -1, 1, 1, -1, -1, 1, -1, -1, 1, -1, 1, 1, 1]
     ]
 
-    target = [1, -1, -1, -1]    
+    target = [-1, 1]
 
     # AND 2 entradas binárias e alvos bipolares
 
@@ -61,11 +74,7 @@ def calculoPesos():
     # target = [1, 1, 1, 0]
 
     for g in range(0, geracoes):
-        if g == 0:
-            w = [
-                [0, 0, 0]
-            ]
-        else:
+        if g != 0:
             oldW = w[len(w)-1]
             globalOldW = oldW
             newW = []

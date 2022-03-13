@@ -19,6 +19,8 @@ for (let r = 0; r < row; r++) {
     $("#numpad").append(rowElement)
 }
 
+var calculatedWeight = calcWeight();
+
 function calcItem(position) {
     let id = "#" + position;
     let e = $(id);
@@ -31,5 +33,16 @@ function calcItem(position) {
         e.removeClass("boxRed")
         .addClass("boxBlue");
         values[position-1] = -1;
+    }
+}
+
+function calcPerceptron() {
+    newValues = [...values]
+    newValues.unshift(1);
+    let result = testWeight(calculatedWeight, newValues);
+    if (result == -1) {
+        alert("0");
+    } else if (result == 1) {
+        alert("1");
     }
 }
