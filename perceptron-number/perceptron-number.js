@@ -39,15 +39,42 @@ function calcItem(position) {
 function calcPerceptron() {
     newValues = [...values]
     newValues.unshift(1);
-    let neuron1 = testWeight(calculatedWeight[0], newValues);
-    let neuron2 = testWeight(calculatedWeight[1], newValues);
-    if (neuron1 == 1 && neuron2 == 1) {
+
+    let neuron = [];
+
+    for(let i = 0; i < calculatedWeight.length; i++) {
+        neuron.push(testWeight(calculatedWeight[i], newValues));
+    }
+
+    let results = [
+        [-1, -1, -1, -1],
+        [-1, 1, -1, -1],
+        [-1, -1, 1, -1],
+        [-1, 1, 1, -1],
+        [-1, 1, 1, 1],
+        [1, -1, -1, -1],
+        [1, 1, -1, -1],
+        [1, -1, 1, -1],
+        [1, 1, 1, -1],
+        [1, 1, 1, 1]
+    ]
+
+    for(let i = 0; i < results.length; i++) {
+        let check = 0
+        for(let j = 0; j < results[i].length; j++) {
+            if(results[i][j] == neuron[j]) {
+                check += 1;
+            }
+        }
+        if(check == neuron.length) {
+            $("#result").text(i);
+            return;
+        }
+    }
+
+    $("#result").text("Não encontrado");
+    
+    if (neuron[0] == -1 && neuron[1] == -1 && neuron[0] == -1 && neuron[0] == -1) {
         alert("0");
-    } else if (neuron1 == 1 && neuron2 == -1) {
-        alert("1");
-    } else if (neuron1 == -1 && neuron2 == 1) {
-        alert("2");
-    } else if (neuron1 == -1 && neuron2 == -1) {
-        alert("3");
     }
 }
