@@ -28,19 +28,31 @@ tFinal = [
 
 */
 
-threshold = 1
-rate = 1
+var threshold = 1
+var rate = 1
 
-x = [
+var x = [
     [1,     1, 1, 1,    1, -1, 1,   1, -1, 1,    1, -1, 1,    1, 1, 1],
-    [1,     -1, 1, -1,    1, 1, -1,   -1, 1, -1,    -1, 1, -1,    1, 1, 1]
+    [1,     -1, 1, -1,    1, 1, -1,   -1, 1, -1,    -1, 1, -1,    1, 1, 1],
+    [1,     1, 1, 1,    -1, -1, 1,   1, 1, 1,    1, -1, -1,    1, 1, 1],
+    [1,     1, 1, 1,    -1, -1, 1,   1, 1, 1,    -1, -1, 1,    1, 1, 1],
 ];
 
-t = [
-    -1, 1
+var t = [
+    [1, 1, -1, -1],
+    [1, -1, 1, -1]
 ];
 
-function calcWeight() {
+function calcAllWeight() {
+    let arrMaster = []
+    for(let i = 0; i < t.length; i++) {
+        let arr = calcWeight(t[i]);
+        arrMaster.push(arr);
+    }
+    return arrMaster;
+}
+
+function calcWeight(t) {
     let stoppedWeight = 0;
     let generation = 1;
 
@@ -105,7 +117,7 @@ function calcWeight() {
                     let fYentWeight;
                     // Calculate Yent
                     for (let l = 0; l < x[k].length; l++) {
-                        yentWeight += x[k][l] * w[k][l]
+                        yentWeight += x[k][l] * w[i+1][l]
                     }
 
                     // Calculate FYent
